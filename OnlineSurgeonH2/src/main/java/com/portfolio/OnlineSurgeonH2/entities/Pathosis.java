@@ -46,9 +46,7 @@ public class Pathosis {
     public Integer getId() {
         return this.id;
     }
-    public void setId(Integer id){
-        this.id = id;
-    }
+    public void setIdNull() {this.id = null;}
     public String getName(){
         return this.name;
     }

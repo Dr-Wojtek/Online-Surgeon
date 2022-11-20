@@ -22,6 +22,7 @@ public class Person {
         return this.id;
     }
 
+    public void setIdNull() {this.id = null;}
     public String getLastName(){
         return this.lastName;
     }

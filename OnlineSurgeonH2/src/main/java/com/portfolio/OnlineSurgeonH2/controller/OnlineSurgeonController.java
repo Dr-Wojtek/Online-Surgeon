@@ -43,6 +43,7 @@ public class OnlineSurgeonController{
 
     @PostMapping("/persons")
     public Person addPerson(@RequestBody Person person) {
+        person.setIdNull();
         return this.personRepository.save(person);
     }
 
@@ -94,38 +95,6 @@ public class OnlineSurgeonController{
         return this.patientRepository.findAll();
     }
 
-    @PostMapping("/patients")
-    public Patient addPatient(@RequestBody Patient patient) {
-        return this.patientRepository.save(patient);
-    }
-
-    @Secured("ROLE_ADMIN")
-    @PutMapping("/patients/{id}")
-    public Patient updatePatient(@PathVariable("id") Integer id, @RequestBody Patient patient){
-        Optional<Patient> patientToUpdateOptional = this.patientRepository.findById(id);
-        if (patientToUpdateOptional.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-        Patient patientToUpdate = patientToUpdateOptional.get();
-        if (patient.getPersonId() != null){
-            patientToUpdate.setPersonId(patient.getPersonId());
-        }
-        if (patient.getPathosisId() != null) {
-            patientToUpdate.setPathosisId(patient.getPathosisId());
-        }
-        return this.patientRepository.save(patientToUpdate);
-    }
-
-    @Secured("ROLE_ADMIN")
-    @DeleteMapping("/patients/{id}")
-    public Patient deletePatient(@PathVariable("id") Integer id){
-        Optional<Patient> patientToDeleteOptional = this.patientRepository.findById(id);
-        if (patientToDeleteOptional.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-        this.patientRepository.delete(patientToDeleteOptional.get());
-        return patientToDeleteOptional.get();
-    }
 
     @GetMapping("/pathosis")
     public List<Pathosis> getAllPathosis() {
@@ -145,6 +114,7 @@ public class OnlineSurgeonController{
 
     @PostMapping("/pathosis")
     public Pathosis addPathosis(@RequestBody Pathosis pathosis){
+        pathosis.setIdNull();
         return this.pathosisRepository.save(pathosis);
     }
     @Secured("ROLE_ADMIN")
