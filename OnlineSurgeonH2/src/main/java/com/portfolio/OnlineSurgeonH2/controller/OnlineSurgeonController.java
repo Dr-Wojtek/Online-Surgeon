@@ -1,12 +1,12 @@
 package com.portfolio.OnlineSurgeonH2.controller;
 
-import java.lang.Iterable;
 import java.util.*;
 
-import com.google.common.collect.Iterables;
-import com.portfolio.OnlineSurgeonH2.entities.*;
+import com.google.common.collect.Lists;
+import com.portfolio.OnlineSurgeonH2.model.*;
 import com.portfolio.OnlineSurgeonH2.repositories.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.*;
@@ -15,33 +15,32 @@ import org.springframework.web.server.*;
 @RestController
 @RequestMapping("/")
 public class OnlineSurgeonController{
-    private final PersonRepository personRepository;
-    private final PatientRepository patientRepository;
-    private final PathosisRepository pathosisRepository;
+    @Autowired
+    private PersonRepository personRepository;
+    @Autowired
+    private PatientRepository patientRepository;
+    @Autowired
+    private PathosisRepository pathosisRepository;
 
-    public OnlineSurgeonController(PatientRepository patientRepository, PersonRepository personRepository, PathosisRepository pathosisRepository){
-        this.patientRepository = patientRepository;
-        this.personRepository = personRepository;
-        this.pathosisRepository = pathosisRepository;
-    }
     @GetMapping("/persons")
-    public Iterable<Person> getAllPersons() {
+    public List<Person> getAllPersons() {
         return this.personRepository.findAll();
     }
 
     @GetMapping("/persons/byAge")
-    public Iterable<Person> getAllPersonsByAge()
+    public List<Person> getAllPersonsByAge()
     {return this.personRepository.findAllByOrderByAgeDesc();}
 
     @GetMapping("/persons/byAge/{start}-{end}")
-    public Iterable<Person> getAllPersonsByAgeBetween(@PathVariable("start") Integer start, @PathVariable("end") Integer end)
+    public List<Person> getAllPersonsByAgeBetween(@PathVariable("start") Integer start, @PathVariable("end") Integer end)
         {return this.personRepository.findAllByAgeBetweenOrderByAgeAsc(start, end);}
 
     @GetMapping("/persons/byPostal")
-    public Iterable<Person> getAllPersonsByPostal()
+    public List<Person> getAllPersonsByPostal()
     {return this.personRepository.findAllByOrderByPostalAsc();}
 
     @PostMapping("/persons")
+    @ResponseStatus(HttpStatus.CREATED)
     public Person addPerson(@RequestBody Person person) {
         person.setIdNull();
         return this.personRepository.save(person);
@@ -81,9 +80,9 @@ public class OnlineSurgeonController{
     }
 
     @GetMapping("/patients")
-    public Iterable<Patient> createAndGetAllPatients() {
+    public List<Patient> createAndGetAllPatients() {
         this.patientRepository.deleteAll();
-        Iterable<Person> listOfPersons = this.personRepository.findAll();
+        List<Person> listOfPersons = this.personRepository.findAll();
         List<Pathosis> listOfPathosis = this.pathosisRepository.findAll();
 
         for (Person person:listOfPersons) {
@@ -155,7 +154,7 @@ public class OnlineSurgeonController{
     }
 
     @PostMapping("/sendToSurgery/{type}/{timer}")
-    public Iterable<Patient> sendToSurgery(@PathVariable("type") String waitingRoom, @PathVariable("timer") Integer timer, @RequestBody Iterable<Patient> patients){
+    public List<Patient> sendToSurgery(@PathVariable("type") String waitingRoom, @PathVariable("timer") Integer timer, @RequestBody List<Patient> patients){
         if (!waitingRoom.equals("q") && !waitingRoom.equals("s")){ throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
         int max_mortality = 5;
         Queue<Patient> q = new LinkedList<>();
@@ -172,7 +171,7 @@ public class OnlineSurgeonController{
             max_mortality = max_mortality - 1;
         }
         Patient luckyPatient = null;
-        for (int i = 0; i < timer && i < Iterables.size(patients); i ++){
+        for (int i = 0; i < timer && i < patients.size(); i ++){
             if (waitingRoom.equals("q")) { luckyPatient = q.remove(); }
             else if (waitingRoom.equals("s")) { luckyPatient = s.pop();}
 
@@ -185,7 +184,7 @@ public class OnlineSurgeonController{
         return getNamesFromIds(patients);
     }
 
-    public Iterable<Patient> getNamesFromIds(Iterable<Patient> patientsAftermath){
+    public List<Patient> getNamesFromIds(List<Patient> patientsAftermath){
         for (Patient patient : patientsAftermath){
             Optional<Pathosis> diseaseOptional = this.pathosisRepository.findById(patient.getPathosisId());
             Pathosis disease = diseaseOptional.get();

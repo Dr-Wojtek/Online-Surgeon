@@ -1,8 +1,8 @@
 package com.portfolio.OnlineSurgeonH2.repositories;
 
-import com.portfolio.OnlineSurgeonH2.entities.Patient;
-import org.springframework.data.repository.CrudRepository;
+import com.portfolio.OnlineSurgeonH2.model.Patient;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PatientRepository extends CrudRepository<Patient, Integer> {
+public interface PatientRepository extends JpaRepository<Patient, Integer> {
         }
 

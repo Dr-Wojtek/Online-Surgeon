@@ -1,11 +1,13 @@
 package com.portfolio.OnlineSurgeonH2.repositories;
 
-import com.portfolio.OnlineSurgeonH2.entities.Person;
-import org.springframework.data.repository.CrudRepository;
+import com.portfolio.OnlineSurgeonH2.model.Person;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PersonRepository extends CrudRepository<Person, Integer>{
-    Iterable<Person> findAllByAgeBetweenOrderByAgeAsc(Integer start, Integer end);
-    Iterable<Person> findAllByOrderByAgeDesc();
-    Iterable<Person> findAllByOrderByPostalAsc();
+import java.util.List;
+
+public interface PersonRepository extends JpaRepository<Person, Integer> {
+    List<Person> findAllByAgeBetweenOrderByAgeAsc(Integer start, Integer end);
+    List<Person> findAllByOrderByAgeDesc();
+    List<Person> findAllByOrderByPostalAsc();
 
 }

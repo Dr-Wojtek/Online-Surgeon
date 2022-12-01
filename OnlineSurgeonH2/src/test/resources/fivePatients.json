@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "personId": 1,
+    "pathosisId": 6,
+    "cured": false,
+    "pathosisName": null,
+    "fullName": null
+  },
+  {
+    "id": 2,
+    "personId": 2,
+    "pathosisId": 1,
+    "cured": false,
+    "pathosisName": null,
+    "fullName": null
+  },
+  {
+    "id": 3,
+    "personId": 3,
+    "pathosisId": 4,
+    "cured": false,
+    "pathosisName": null,
+    "fullName": null
+  },
+  {
+    "id": 4,
+    "personId": 4,
+    "pathosisId": 10,
+    "cured": false,
+    "pathosisName": null,
+    "fullName": null
+  },
+  {
+    "id": 5,
+    "personId": 5,
+    "pathosisId": 4,
+    "cured": false,
+    "pathosisName": null,
+    "fullName": null
+  }
+]
