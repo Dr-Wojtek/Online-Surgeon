@@ -18,6 +18,15 @@ Online Surgeon API is a secured Spring Boot application using an external H2 dat
 * Passwords are encoded using Springs own createDelegatingPasswordEncoder() method and users are stored in-memory.
 * **Password for both user and admin: password**
 
+## Testing
+The program has integrity and unit tests implemented on the following factors:
+* Security; Authorization, authentication, CSRF
+* POSTing to /persons
+* GET age between different ages from /persons
+* Auto-generation of patients
+* PUT to /pathosis/{id}
+* POSTing to /sendToSurgery, the main logic of the program
+
 ## End points
 Online Surgeon is a RESTful application. These end points are available at all times, if the appropriate data is fed.
 * As a USER you may GET and POST. As an ADMIN you may also update (PUT) and DELETE.
@@ -66,4 +75,4 @@ Will return the JSON if the ID is found. Will throw a 404 if not.
 3) POST that list to /sendToSurgery/{type}/{time units} to get the final outcome.
 
 # Other
-Online Surgeon was developed in three days, with about 8 hours of work each day.
+Online Surgeon was developed in three days and an additional day implementing testing.
