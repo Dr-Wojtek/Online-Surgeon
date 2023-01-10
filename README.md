@@ -28,7 +28,7 @@ The program has integrity and unit tests implemented on the following factors:
 * POSTing to /sendToSurgery, the main logic of the program
 
 ## End points
-Online Surgeon is a RESTful application. These end points are available at all times, if the appropriate data is fed.
+Online Surgeon is a RESTful application.
 * As a USER you may GET and POST. As an ADMIN you may also update (PUT) and DELETE.
 * If POSTing, a new and unique ID will be generated for you.
 * If you try to POST a person or pathosis with a specified ID, existing or not, the program will generate a new ID instead.
