@@ -1,4 +1,4 @@
-# Online Surgeon API
+# Online Akuten API
 
 * The goal of the program is 'cure' patients from various diseases, either by sending them to a queue or a stack.
 * An external .sql file is loaded at boot and populates the Hibernate-created tables with 50 persons and 15 pathosis (diseases). The persons have a first name, last name, age, a postal code and a unique ID. The pathosis each have a name, three different symptoms and a mortality level. They are given unique IDs.
