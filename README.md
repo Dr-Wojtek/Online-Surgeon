@@ -11,8 +11,8 @@ Online Surgeon API is a secured Spring Boot application using an external H2 dat
 
 ## Security
 * The program is secured using Spring Security 5.7.5.
-* It does not use the deprecated WebSecurityConfigurerAdapter. Instead, it uses SecurityFilterChain, with enabled CSRF-protection and CSRF-tokens sent through an external cookie, enabling modifying requests such as POST, PUT, DELETE to be sent by, for example, Postman.
-* Authentication is needed for any request, except GET on the root page "/" (which holds nothing, there is no front-end).
+* It does not use the deprecated WebSecurityConfigurerAdapter. Instead, it uses SecurityFilterChain, with ~~enabled CSRF-protection and CSRF-tokens sent through an external cookie, enabling modifying requests such as POST, PUT, DELETE to be sent by, for example, Postman. ~~ currently disabled CSRF
+* Authentication is needed for any request, except GET on the root page "/" (which holds nothing).
 * A user role have authorization to GET and POST new persons and pathosis and sending patients to surgery. An admin have both USER and ADMIN roles, enabling them to GET, POST, PUT and DELETE on tables where possible.
 * Exclusive admin authorization is enabled through GlobalMethodSecurity.
 * Passwords are encoded using Springs own createDelegatingPasswordEncoder() method and users are stored in-memory.
@@ -73,6 +73,10 @@ Will return the JSON if the ID is found. Will throw a 404 if not.
 1) Use any CRUD operation of your choice on persons or pathosis tables
 2) GET a list of patients from /patients
 3) POST that list to /sendToSurgery/{type}/{time units} to get the final outcome.
+
+# Example of front end:
+![Skärmavbild 2023-01-17 kl  13 25 00](https://user-images.githubusercontent.com/99674687/212898517-70bb120f-bd63-406c-84fd-b8b6c2f4fe23.png)
+
 
 # Other
 Online Surgeon was developed in three days and an additional day implementing testing.
