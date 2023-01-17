@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.portfolio.OnlineAkuten.OnlineSurgeonH2Application
+Main-Class: com.portfolio.OnlineAkuten.OnlineAkutenApplication
 

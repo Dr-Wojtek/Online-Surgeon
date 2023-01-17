@@ -9,12 +9,12 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.portfolio</groupId>
-	<artifactId>OnlineSurgeonH2</artifactId>
+	<artifactId>Online-Akuten</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>OnlineSurgeonH2</name>
+	<name>Online-Akuten</name>
 	<description>Please stay alive a little longer</description>
 	<properties>
-		<java.version>18</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
