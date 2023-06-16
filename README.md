@@ -1,3 +1,7 @@
+![Skärmavbild 2023-01-17 kl  13 25 00](https://user-images.githubusercontent.com/99674687/212898517-70bb120f-bd63-406c-84fd-b8b6c2f4fe23.png)
+
+Online-Akuten was deployed at Heroku and live on www.alexstrae.nu until april 2023. It was my second React project and my first Spring project that implemented security. The Online Surgeon backend was developed in three days and an additional day implementing testing.
+
 # Online Akuten API
 
 * The goal of the program is 'cure' patients from various diseases, either by sending them to a queue or a stack.
@@ -73,10 +77,3 @@ Will return the JSON if the ID is found. Will throw a 404 if not.
 1) Use any CRUD operation of your choice on persons or pathosis tables
 2) GET a list of patients from /patients
 3) POST that list to /sendToSurgery/{type}/{time units} to get the final outcome.
-
-# Example of front end:
-![Skärmavbild 2023-01-17 kl  13 25 00](https://user-images.githubusercontent.com/99674687/212898517-70bb120f-bd63-406c-84fd-b8b6c2f4fe23.png)
-
-
-# Other
-Online Surgeon backend was developed in three days and an additional day implementing testing.
